@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Surprise</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;800&family=Mali:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<!-- รูปทรงหัวใจ ใช้ตัดรูปปุ่มกด (อ้างโดย css: clip-path:url(#heartClip)) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="heartClip" clipPathUnits="objectBoundingBox"><path d="M0.5,0.95 C0.1,0.65 0,0.45 0,0.3 C0,0.12 0.13,0.02 0.27,0.02 C0.38,0.02 0.46,0.08 0.5,0.17 C0.54,0.08 0.62,0.02 0.73,0.02 C0.87,0.02 1,0.12 1,0.3 C1,0.45 0.9,0.65 0.5,0.95 Z"/></clipPath></defs></svg>
+
+<div id="vol"><button id="mute" aria-label="ปิดเสียง">🔊</button><button class="vstep" id="vdown" type="button" aria-label="ลดเสียง">−</button><input id="vslider" type="range" min="0" max="100" value="40" aria-label="ระดับเสียง"><button class="vstep" id="vup" type="button" aria-label="เพิ่มเสียง">+</button></div>
+
+<!-- 1 passcode -->
+<section class="stage pc on" id="s1">
+  <div class="pets"><img src="assets/stickers/sticker-2.png"></div>
+  <h1 id="pcTitle">ใส่รหัส 4 หลัก</h1>
+  <p>คำใบ้ : วันแรกที่ขอเป็นแฟน</p>
+  <div class="dots" id="dots"><i><img src="assets/icons/bear-1.webp" alt=""></i><i><img src="assets/icons/cat-1.webp" alt=""></i><i><img src="assets/icons/bear-2.webp" alt=""></i><i><img src="assets/icons/cat-2.webp" alt=""></i></div>
+  <input id="pin" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" autofocus aria-label="รหัส 4 หลัก">
+</section>
+
+<!-- 2-4 phone -->
+<section class="stage" id="s2">
+  <div class="phone" id="phone">
+    <div class="screen lock on" id="lock">
+      <div class="clock" id="clock">00:00</div>
+      <div class="date" id="date"></div>
+      <button class="notif" id="notif">
+        <div class="ico">LINE</div>
+        <div><b>ข้อความใหม่</b><span>คลิกเพื่ออ่านข้อความ</span></div>
+        <div class="badge">•</div>
+      </button>
+    </div>
+    <div class="screen msgapp" id="msgapp">
+      <div class="bar" id="bar"><span id="bname"></span><small>กำลังใช้งาน</small></div>
+      <div class="chat" id="chat"></div>
+    </div>
+  </div>
+</section>
+
+<div class="alert" id="gate">
+  <div class="mbox gatebox">
+    <div class="mbar"><span>📩 การแจ้งเตือน</span><b>✕</b></div>
+    <div class="mbody"><div class="mav">💌</div><p>มีข้อความใหม่ 25+ ข้อความ ส่งถึงคุณ</p></div>
+    <button class="mok" id="gateBtn">เปิดอ่าน</button>
+  </div>
+</div>
+<div id="popLayer"></div>
+<div class="alert" id="msgView"></div>
+<button id="goBtn">👆 กดตรงนี้สิ</button>
+<div class="alert" id="alert">
+  <div class="mbox warn">
+    <div class="mbar"><span>⚠️ คำเตือนจากระบบ</span><b>✕</b></div>
+    <div class="mbody"><div class="mav">⚠️</div><p>โทรศัพท์เครื่องนี้จะทำลายตัวเอง</p></div>
+    <div class="n" id="cd">5</div>
+    <div class="mok">ตกลง</div>
+  </div>
+</div>
+<div class="flash" id="flash"></div>
+<canvas id="fx"></canvas>
+
+<!-- 6 heart -->
+<section class="stage" id="s3">
+  <button class="big" id="heart" aria-label="กดหัวใจ"><img id="heartImg" alt=""></button>
+  <div class="hint">กดหัวใจ</div>
+</section>
+
+<!-- 7 gallery -->
+<section class="stage gallery" id="s4">
+  <h2>ความทรงจำจากแฟนคลับ 💖</h2>
+  <p>แตะรูปเพื่อดูใหญ่ๆ</p>
+  <div id="gwrap"></div>
+</section>
+
+<div class="viewer" id="viewer">
+  <div class="card">
+    <button class="vx" id="vclose" aria-label="ปิด">✕</button>
+    <img id="vimg" alt="">
+    <p id="vcap"></p>
+    <div class="vnav"><button id="vprev" aria-label="ก่อนหน้า">‹</button><span id="vnum"></span><button id="vnext" aria-label="ถัดไป">›</button></div>
+  </div>
+</div>
+
+<!-- สคริปต์ (ลำดับสำคัญ ห้ามสลับ) -->
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/passcode.js"></script>
+<script src="js/phone.js"></script>
+<script src="js/popups.js"></script>
+<script src="js/ending.js"></script>
+<script src="js/gallery.js"></script>
+</body>
+</html>
