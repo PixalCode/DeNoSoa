@@ -17,10 +17,10 @@ const CONFIG = {
     title: "จงตอบคำถามต่อไปนี้",
     questions: [                         // ขึ้นทีละข้อ กด "ถัดไป" เพื่อไปข้อต่อไป (เพิ่ม/ลดข้อได้)
       "3 เดือนที่ผ่านมาเป็นยังไงบ้าง ?",
-      "ถ้าเหลือเวลาแค่วันเดียวอยากทำอะไรด้วยกัน?",
-      "มีอะไรที่เขาทำให้แล้วคิดว่า มัน 'น่ารักจัง' บ้างไหม?",
+      "ถ้าเหลือเวลาแค่วันเดียวอยากทำอะไรด้วยกัน ?",
+      "มีอะไรที่เขาทำให้แล้วคิดว่า มัน 'น่ารักจัง' บ้างไหม ?",
       "โมเมนต์ไหนที่ทำให้รู้สึก 'ตกหลุมรัก' แบบเต็ม ๆ ?",
-      "ทั้งคู่มีอะไรที่อยากบอกกัน และสิ่งที่เป็นห่วงกันไหม"
+      "ทั้งคู่มีอะไรที่อยากบอกกัน และสิ่งที่เป็นห่วงกันไหม ?"
     ],
     nextLabel: "ข้อถัดไป ▶"
   },
@@ -57,7 +57,7 @@ const CONFIG = {
     { src: "assets/photos/27.png", caption: "LOVE RD:>" },
     { src: "assets/photos/28.webp", caption: "Better together. #RD ❤️" },
     { src: "assets/photos/29.png", caption: "My All-time Partner." },
-    { src: "assets/photos/30.png", caption: "You complete me." },
+    { src: "assets/photos/30.png", caption: "You Complete Me." },
     { src: "assets/photos/31.jpg", caption: "อยู่กับเธอแล้วมีความสุขมากนะ" },
     { src: "assets/photos/32.png", caption: "I’m forever yours." },
     { src: "assets/photos/33.png", caption: "เก็บเธอไว้ในรูป" },
