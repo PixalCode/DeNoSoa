@@ -51,6 +51,7 @@ function explode() {
     $('popLayer').classList.remove('on');
     $('popLayer').innerHTML = '';
     show('s3');
+    startBoard();
     sfxSparkle();
     musicStart(.2);
   }, 700);

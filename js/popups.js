@@ -78,7 +78,7 @@ function makeBox(p, i) {
 
   const ok = document.createElement('div');
   ok.className = 'mok';
-  ok.textContent = 'ตกลง';
+  ok.textContent = 'กดดูข้อความแบบเต็ม';
 
   box.append(bar, body, ok);
   makeDraggable(box, p);

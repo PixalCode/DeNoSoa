@@ -2,15 +2,6 @@
 
 let viewIdx = 0;
 
-/* ปุ่มหัวใจ: ใช้รูปจาก CONFIG.heartImage (ตัดเป็นรูปหัวใจ) ถ้าไม่ตั้งไว้ใช้อีโมจิ */
-if (CONFIG.heartImage) $('heartImg').src = CONFIG.heartImage;
-else $('heart').textContent = '💖';
-
-$('heart').onclick = () => {
-  show('s4');
-  buildGallery();
-};
-
 function buildGallery() {
   const wrap = $('gwrap');
   wrap.innerHTML = '';

@@ -3,20 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Surprise</title>
+<title>DeNoSoa</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;800&family=Mali:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-<!-- รูปทรงหัวใจ ใช้ตัดรูปปุ่มกด (อ้างโดย css: clip-path:url(#heartClip)) -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="heartClip" clipPathUnits="objectBoundingBox"><path d="M0.5,0.95 C0.1,0.65 0,0.45 0,0.3 C0,0.12 0.13,0.02 0.27,0.02 C0.38,0.02 0.46,0.08 0.5,0.17 C0.54,0.08 0.62,0.02 0.73,0.02 C0.87,0.02 1,0.12 1,0.3 C1,0.45 0.9,0.65 0.5,0.95 Z"/></clipPath></defs></svg>
 
-<div id="vol"><button id="mute" aria-label="ปิดเสียง">🔊</button><button class="vstep" id="vdown" type="button" aria-label="ลดเสียง">−</button><input id="vslider" type="range" min="0" max="100" value="40" aria-label="ระดับเสียง"><button class="vstep" id="vup" type="button" aria-label="เพิ่มเสียง">+</button></div>
+<div id="vol"><button id="mute" aria-label="เปิด/ปิดเสียง">🔊</button><input id="vslider" type="range" min="0" max="100" value="25" aria-label="ระดับเสียง"></div>
 
 <!-- 1 passcode -->
 <section class="stage pc on" id="s1">
-  <div class="pets"><img src="assets/stickers/sticker-2.png"></div>
+  <div class="pets"><img src="assets/stickers/sticker-2.png" alt=""></div>
   <h1 id="pcTitle">ใส่รหัส 4 หลัก</h1>
   <p>คำใบ้ : วันแรกที่ขอเป็นแฟน</p>
   <div class="dots" id="dots"><i><img src="assets/icons/bear-1.webp" alt=""></i><i><img src="assets/icons/cat-1.webp" alt=""></i><i><img src="assets/icons/bear-2.webp" alt=""></i><i><img src="assets/icons/cat-2.webp" alt=""></i></div>
@@ -31,7 +29,7 @@
       <div class="date" id="date"></div>
       <button class="notif" id="notif">
         <div class="ico">LINE</div>
-        <div><b>ข้อความใหม่</b><span>คลิกเพื่ออ่านข้อความ</span></div>
+        <div><b>ข้อความใหม่</b><span>คลิกเพื่อเปิดข้อความ</span></div>
         <div class="badge">•</div>
       </button>
     </div>
@@ -57,21 +55,28 @@
     <div class="mbar"><span>⚠️ คำเตือนจากระบบ</span><b>✕</b></div>
     <div class="mbody"><div class="mav">⚠️</div><p>โทรศัพท์เครื่องนี้จะทำลายตัวเอง</p></div>
     <div class="n" id="cd">5</div>
-    <div class="mok">ตกลง</div>
   </div>
 </div>
 <div class="flash" id="flash"></div>
 <canvas id="fx"></canvas>
 
-<!-- 6 heart -->
+<!-- 6 chalkboard -->
 <section class="stage" id="s3">
-  <button class="big" id="heart" aria-label="กดหัวใจ"><img id="heartImg" alt=""></button>
-  <div class="hint">กดหัวใจ</div>
+  <div class="board">
+    <div class="bframe">
+      <div class="bsurface">
+        <h2 id="bTitle"></h2>
+        <div id="bQs"></div>
+      </div>
+      <div class="btray"><i></i><i class="c2"></i></div>
+    </div>
+  </div>
+  <button id="bNext">ถัดไป ▶</button>
 </section>
 
 <!-- 7 gallery -->
 <section class="stage gallery" id="s4">
-  <h2>ความทรงจำจากแฟนคลับ 💖</h2>
+  <h2>FanArt จาก เดโนซอ 💖</h2>
   <p>แตะรูปเพื่อดูใหญ่ๆ</p>
   <div id="gwrap"></div>
 </section>
@@ -93,6 +98,7 @@
 <script src="js/phone.js"></script>
 <script src="js/popups.js"></script>
 <script src="js/ending.js"></script>
+<script src="js/board.js"></script>
 <script src="js/gallery.js"></script>
 </body>
 </html>

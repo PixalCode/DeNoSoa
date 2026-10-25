@@ -1,7 +1,7 @@
 /* audio.js — เสียงเอฟเฟกต์ + เพลง + ปุ่มปรับเสียง (สังเคราะห์ด้วย Web Audio ไม่ต้องมีไฟล์เสียง ยกเว้นถ้าใส่ CONFIG.music) */
 
 /* ===== เสียง (สร้างด้วย Web Audio ไม่ต้องใช้ไฟล์) ===== */
-let VOL=.4,lastVolume=.4,bgmBase=.2;
+let VOL=.25,bgmBase=.2;
 // ความดังรวม 0-1 (ยิ่งน้อยยิ่งเบา)
 let AC=null,master,musicG,muted=false,musicOn=false,musicTimer=null;
 function audio(){
@@ -75,6 +75,10 @@ function sfxSparkle(){
   const t=now();
   [1047,1319,1568,2093,2637].forEach((f,i)=>tone(f,t+i*.07,.35,{v:.12}))
 }
+function sfxChalk() {
+  if (!audio()) return;
+  tone(1800 + Math.random() * 900, now(), .03, { type: 'square', v: .02 });
+}
 function sfxSnap(){
   if(!audio())return;
   const t=now();
@@ -116,6 +120,7 @@ function musicStopSynth(){
 let BGM=null,fadeT=null;
 function bgmFade(to){
   clearInterval(fadeT);
+  if(to>0&&musicOn)BGM.play().catch(()=>{});
   fadeT=setInterval(()=>{
     const d=to-BGM.volume;
     if(Math.abs(d)<.03){
@@ -132,54 +137,33 @@ function musicStart(vol){
     BGM.volume=0;
     BGM.muted=muted
   }
+  musicOn=true;
   bgmBase=vol||.2;
-  BGM.play().catch(()=>{});
   bgmFade(Math.min(1,bgmBase*3.5*VOL));
 }
 function musicStop(){
+  musicOn=false;
   if(BGM)bgmFade(0);
   else musicStopSynth()
 }
-function syncVolume(){
-  if(master)master.gain.value=muted?0:VOL;
-  if(BGM){
-    BGM.muted=muted;
-    if(!BGM.paused)bgmFade(Math.min(1,bgmBase*3.5*VOL))
-  }
-  $('vslider').value=Math.round(VOL*100);
-  $('mute').textContent=(muted||!VOL)?'🔇':'🔊';
-  $('mute').setAttribute('aria-label',(muted||!VOL)?'เปิดเสียง':'ปิดเสียง')
-}
-function setVolume(value){
-  VOL=Math.max(0,Math.min(1,value));
-  if(VOL>0){
-    lastVolume=VOL;
-    muted=false
-  }
-  syncVolume()
+function updateMuteButton(){
+  $('mute').textContent=(muted||!VOL)?'🔇':'🔊'
 }
 $('vslider').oninput=e=>{
   audio();
-  setVolume(Number(e.target.value)/100)
+  VOL=e.target.value/100;
+  if(muted&&VOL>0){
+    muted=false;
+    if(BGM)BGM.muted=false
+  }
+  if(master)master.gain.value=muted?0:VOL;
+  if(BGM&&musicOn)bgmFade(Math.min(1,bgmBase*3.5*VOL));
+  updateMuteButton()
 };
 $('mute').onclick=()=>{
   audio();
-  if(muted||!VOL){
-    if(!VOL)VOL=lastVolume;
-    muted=false
-  }else{
-    lastVolume=VOL;
-    muted=true
-  }
-  syncVolume()
-};
-$('vdown').onclick=()=>{
-  audio();
-  if(muted){muted=false;VOL=lastVolume}
-  setVolume(VOL-.1)
-};
-$('vup').onclick=()=>{
-  audio();
-  if(muted){muted=false;VOL=lastVolume}
-  setVolume(VOL+.1)
+  muted=!muted;
+  if(master)master.gain.value=muted?0:VOL;
+  if(BGM)BGM.muted=muted;
+  updateMuteButton()
 };
