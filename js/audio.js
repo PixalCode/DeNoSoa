@@ -53,23 +53,6 @@ function sfxTick(last){
   const t=now();
   tone(last?1400:900,t,last?.5:.14,{type:'square',v:.07})
 }
-function sfxBoom(){
-  if(!audio())return;
-  const t=now();
-  const n=AC.sampleRate,buf=AC.createBuffer(1,n,n),d=buf.getChannelData(0);
-  for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2);
-  const src=AC.createBufferSource(),fl=AC.createBiquadFilter(),g=AC.createGain();
-  src.buffer=buf;
-  fl.type='lowpass';
-  fl.frequency.setValueAtTime(2000,t);
-  fl.frequency.exponentialRampToValueAtTime(80,t+.9);
-  g.gain.value=.9;
-  src.connect(fl);
-  fl.connect(g);
-  g.connect(master);
-  src.start(t);
-  tone(160,t,.7,{v:.5,to:35})
-}
 function sfxSparkle(){
   if(!audio())return;
   const t=now();

@@ -103,20 +103,7 @@ button {
   position: relative;
   overflow: hidden;
 }
-.phone.vib {
-  animation: vib .12s infinite;
-}
-@keyframes vib {
-  0% {
-    transform: translate(3px,2px) rotate(.6deg);
-  }
-  50% {
-    transform: translate(-3px,-2px) rotate(-.6deg);
-  }
-  100% {
-    transform: translate(2px,-3px) rotate(.4deg);
-  }
-}
+
 .phone:before {
   content: "";
   position: absolute;
@@ -285,16 +272,15 @@ button {
 .alert.on {
   display: flex;
 }
-.alert .warn,
+.alert .surprise,
 .alert .gatebox {
   position: relative;
   width: min(300px, 80vw);
   transform: none;
   --r: 0deg;
 }
-.alert.on .warn { animation: vib .12s infinite; }
-.alert .warn .mbar { background: linear-gradient(90deg, #ffd0d0, #ffb3c7); }
-.alert .warn .mav { display: grid; place-items: center; background: #fff3d6; font-size: 22px; }
+.alert .surprise .mbar { background: linear-gradient(90deg, #ffd0d0, #ffb3c7); }
+.alert .surprise .mav { display: grid; place-items: center; background: #fff3d6; font-size: 22px; }
 .alert .n {
   text-align: center;
   font-size: 64px;
@@ -303,37 +289,15 @@ button {
   line-height: 1.1;
 }
 
-/* explosion */
 #fx {
   position: fixed;
   inset: 0;
+  display: none;
   pointer-events: none;
-  z-index: 30;
+  z-index: 1;
 }
-.flash {
-  position: fixed;
-  inset: 0;
-  background: #fff;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 25;
-}
-.flash.go {
-  animation: fl .7s ease-out;
-}
-@keyframes fl {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes beat {
-  50% {
-    transform: scale(1.12);
-  }
-}
+#fx.rain { display: block; }
+#s3 { z-index: 2; }
 
 /* gallery: โพลารอยด์กระจาย (gallery.js) */
 .gallery {
@@ -555,13 +519,6 @@ button.mok {
   width: min(26vw,100px);
   accent-color: #8c7ae6;
 }
-@media (prefers-reduced-motion:reduce) {
-  .phone.vib,.big {
-    animation: none;
-  }
-}
-
-
 /* ---------- หน้ากล่องข้อความเด้ง (popups.js) ---------- */
 #popLayer {
   position: fixed;
@@ -631,12 +588,6 @@ button.mok {
   color: #fff;
   font-size: 13px;
   font-weight: 600;
-}
-
-/* กล่องข้อความสั่นตอนหัวใจดันขึ้นมาจากข้างใต้ (ending.js) */
-.mbox.bump { animation: bump .18s ease-in-out infinite; }
-@keyframes bump {
-  50% { transform: translateY(-7px) rotate(var(--r, 0deg)) scale(1.03); }
 }
 
 /* กล่องข้อความเด้ง: กดดู + ลากย้าย + ปุ่ม "กดตรงนี้สิ" (popups.js) */

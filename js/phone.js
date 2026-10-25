@@ -51,5 +51,5 @@ $('notif').onclick=async()=>{
   }
   await wait(1200);
   await popupFlood(); // หน้ากล่องข้อความเด้ง (js/popups.js)
-  selfDestruct();
+  startQuestionStage();
 };
