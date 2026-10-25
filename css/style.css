@@ -360,17 +360,23 @@ button {
   background: var(--paper);
   box-shadow: 0 6px 16px rgba(100,80,180,.35);
   transform: rotate(var(--r, 0deg));
-  cursor: pointer;
+  cursor: grab;
   pointer-events: auto;
+  touch-action: none;
   animation: gpop .5s cubic-bezier(.2,1.5,.4,1) backwards;
 }
-.gp:active { transform: rotate(var(--r, 0deg)) scale(1.06); }
+.gp:active {
+  cursor: grabbing;
+  transform: rotate(var(--r, 0deg)) scale(1.06);
+}
 .gp img {
   width: 100%;
   display: block;
   aspect-ratio: 1;
   object-fit: cover;
   background: #ddd;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 @keyframes gpop {
   from { transform: translateY(-40px) scale(.3) rotate(var(--r, 0deg)); opacity: 0; }
