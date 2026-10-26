@@ -21,7 +21,7 @@ async function popupFlood() {
   await popupGate();
 
   const layer = $('popLayer');
-  layer.innerHTML = '<div id="popCount"></div>';
+  layer.innerHTML = '<div id="popCount"></div><div id="popHelp">แตะกล่องเพื่ออ่านข้อความแบบเต็ม · ลากเพื่อย้ายกล่อง<br>อ่านเสร็จแล้วกด “กดตรงนี้สิ” เพื่อไปต่อ</div>';
   layer.classList.remove('locked');
   layer.classList.add('on');
   topZ = 100;

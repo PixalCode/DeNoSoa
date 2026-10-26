@@ -3,7 +3,7 @@
 /* ===== เสียง (สร้างด้วย Web Audio ไม่ต้องใช้ไฟล์) ===== */
 let VOL=.25,bgmBase=.2;
 // ความดังรวม 0-1 (ยิ่งน้อยยิ่งเบา)
-let AC=null,master,musicG,muted=false,musicOn=false,musicTimer=null;
+let AC=null,master,sfxG,musicG,muted=false,musicOn=false,musicTimer=null;
 function audio(){
   try{
     if(!AC){
@@ -11,6 +11,9 @@ function audio(){
       master=AC.createGain();
       master.gain.value=muted?0:VOL;
       master.connect(AC.destination);
+      sfxG=AC.createGain();
+      sfxG.gain.value=2.5;
+      sfxG.connect(master);
       musicG=AC.createGain();
       musicG.gain.value=0;
       musicG.connect(master)
@@ -22,7 +25,7 @@ function audio(){
 ['click','touchend','keydown'].forEach(ev=>document.addEventListener(ev,audio,{passive:true}));
 function tone(f,t,d,o={}){
   if(!AC)return;
-  const {type='sine',v=.2,dest=master,a=.005}=o,os=AC.createOscillator(),g=AC.createGain();
+  const {type='sine',v=.2,dest=sfxG,a=.005}=o,os=AC.createOscillator(),g=AC.createGain();
   os.type=type;
   os.frequency.setValueAtTime(f,t);
   if(o.to)os.frequency.exponentialRampToValueAtTime(o.to,t+d);
@@ -52,6 +55,12 @@ function sfxTick(last){
   if(!audio())return;
   const t=now();
   tone(last?1400:900,t,last?.5:.14,{type:'square',v:.07})
+}
+function sfxKey(){
+  if(!audio())return;
+  const t=now();
+  tone(1047,t,.09,{type:'triangle',v:.3,a:.002});
+  tone(1568,t+.015,.07,{type:'sine',v:.12,a:.002})
 }
 function sfxSparkle(){
   if(!audio())return;
