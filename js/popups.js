@@ -2,6 +2,7 @@
    ลำดับ: Alert "เปิดอ่าน" → กล่องเด้งทีละกล่อง (กดดู/ลากย้ายได้) → ปุ่ม "กดตรงนี้สิ" → นับถอยหลัง (ending.js) */
 
 let topZ = 100;                           // ลำดับชั้นของกล่องที่ถูกหยิบล่าสุด (อยู่บนสุด)
+let openedBox = null;
 
 /* Alert ให้กด "เปิดอ่าน" ก่อน (HTML อยู่ใน index.html id="gate") */
 function popupGate() {
@@ -119,14 +120,15 @@ function makeDraggable(box, p) {
   });
   box.addEventListener('pointerup', () => {
     box.classList.remove('drag');
-    if (!moved) openMsg(p);
+    if (!moved) openMsg(p, box);
   });
   box.addEventListener('pointercancel', () => box.classList.remove('drag'));
 }
 
 /* ดูกล่องข้อความแบบใหญ่ๆ กลางจอ */
-function openMsg(p) {
+function openMsg(p, sourceBox) {
   const v = $('msgView');
+  openedBox = sourceBox;
   v.innerHTML = '';
   const box = document.createElement('div');
   box.className = 'mbox viewbox';
@@ -158,4 +160,8 @@ function openMsg(p) {
 
 function closeMsg() {
   $('msgView').classList.remove('on');
+  if (openedBox) {
+    openedBox.remove();
+    openedBox = null;
+  }
 }

@@ -67,7 +67,9 @@ const CONFIG = {
     { src: "assets/photos/37.png", caption: "คุณคือความสุขของฉัน" },
     { src: "assets/photos/38.png", caption: "รักเธอ <3" },
     { src: "assets/photos/39.png", caption: "365 days of us." },
-    { src: "assets/photos/40.webp", caption: "รักเดซี่ลีซอ" }
+    { src: "assets/photos/40.webp", caption: "รักเดซี่ลีซอ" },
+    { src: "assets/photos/41.png", caption: "#GenZ" },
+    { src: "assets/photos/42.png", caption: "#ท้ายคุณย่า" }
   ],
 
   /* ---------- หน้ากล่องข้อความเด้ง (ต่อจากแชท) ---------- */
